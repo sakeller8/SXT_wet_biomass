@@ -15,8 +15,19 @@ plot(toxin_June$Paralytic_Shellfish_Toxins_.ug.g.,
      cex = 1.3, pch = 16, xlab = "Biomass Wet Weight",
      ylab = "saxitoxin (ug/g)")
 
-June + annotate("text", x=7.5, y=55, label="r^2 = 0.2277") +
-    annotate("text", x=7.5, y=50, label= "y = 3.019x+9.677")
+#ggplot
+
+June <- ggplot(data = toxin_June,
+               aes(x = `Wet_Biomass`,
+                   y = `Paralytic_Shellfish_Toxins_.ug.g.`
+               )) + 
+    geom_point(color = '#33CCFF') +
+    geom_abline(intercept = coef(lmtoxin_June)[2], 
+                slope = coef(lmtoxin_June)[1]) +
+    ggtitle("June 2022 Wet Biomass and Saxitoxin Regression") +
+    labs(x="Wet Biomass (g)", y = expression(paste("Paralytic Shellfish Toxins (",  
+                                                   mu, "g/g)")))
+June
 
 #July
 
@@ -34,6 +45,20 @@ plot(toxin_July$Paralytic_Shellfish_Toxins_.ug.g.,
        abline(lm(toxin_July$Wet_Biomass~toxin_July$Paralytic_Shellfish_Toxins_.ug.g.)),
      cex = 1.3, pch = 16, xlab = "Biomass Wet Weight",
      ylab = "toxintoxin (ug/g)")
+
+#ggplot
+
+July <- ggplot(data = toxin_July,
+               aes(x = `Wet_Biomass`,
+                   y = `Paralytic_Shellfish_Toxins_.ug.g.`
+               )) + 
+    geom_point(color = '#FF99FF') +
+    geom_abline(intercept = coef(lmtoxin_July)[1], 
+                slope = coef(lmtoxin_July)[2]) +
+    ggtitle("June 2022 Wet Biomass and Saxitoxin Regression") +
+    labs(x="Wet Biomass (g)", y = expression(paste("Paralytic Shellfish Toxins (",  
+                                                   mu, "g/g)")))
+July
 
 # combine june and july data
  #Review the results
@@ -63,6 +88,7 @@ plot <- ggplot(data = toxin_summer,
     labs(x="Wet Biomass (g)", y = expression(paste("Paralytic Shellfish Toxins (",  
                                               mu, "g/g)")))
 plot
+
     
 #add texts
 
